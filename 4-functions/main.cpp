@@ -1,29 +1,36 @@
 #include <iostream>
-#include <stdlib.h>
 #include <cmath>
-#include <cfloat>
+#include <cstdio>
 
 using namespace std;
 
-double f_ln(int i, double x){
-    return ((2 * i + 1) / (x * x * (2 * i + 3)));
+void line(void){
+    for (int x = 0; x < 74; x++)
+        cout << "-";
 }
-    
-void ext(int i, double f){
-    if (i < 500) cout << f << endl;
-        else{
-            cout << '-' << endl;
-            abort; //halt;
-        }
-}   
-    
+
+double func(int i, double x){
+    return pow(-1, i) * pow(x, i + 1) / (i + 1);
+}
+
 int main(){
-    double x, eps = DBL_EPSILON, ln = 1, f = 1;
-    cin >> x;
-    for(int i = 0; abs(ln) > eps; i++){
-        ln *= f_ln(i, x);
-        f += (2 * ln);
-        ext(i, f);
+    double eps = 1e-15, f, x, mn;
+    line();
+    cout << endl << "|";
+    printf("%7s      |%15s     |%17s       |%11s |\n", "X", "ln(x + 1)", "ln(x + 1)", "iterations");
+    line();
+    cout << endl;
+    for (x = -0.9; x <= 1; x += 0.1){
+        double ln = 1;
+        int i = 0;
+        f = 0;
+        for (; abs(ln) > eps && i < 500; i++){
+            ln = func(i, x);
+            f += ln;
+        } 
+        cout << "|";
+        printf("%9.3f    |%14.6f      |%17.6f       |%7d     |\n", x, f, log(x + 1), i);
     }
+    line();
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <cstdio>
 
 using namespace std;
@@ -29,15 +30,12 @@ int main(){
                 if (c - a) f = b * x / (c - a);
                 else flag = true;
         cout << "|";
-        if (x < 0) printf("%11.3f      |", x);
-        else printf("%11.3f      |", x);
+        printf("%11.3f      |", x);
         if (flag) cout <<"  devision by 0  |\n";
         else
             if (!(int(a) | int(b)) & (int(b) | int(c))) printf("%12.3f     |", f);
-            else{
-                int f1 = int(f);
-                printf("%12d     |\n", f1);
-            }
+            else
+                printf("%12d     |\n", int(f));
     }
     cout << "-------------------------------------";
     return 0;

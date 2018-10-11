@@ -1,9 +1,12 @@
 #include <iostream>
-#include <cstring>
+#include <string>
+#include <cstdio>
 
 using namespace std;
 
 int main(){
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
     string s;
     bool flag = false;
     int i;
@@ -16,5 +19,7 @@ int main(){
         flag = true;
     }
     if (!flag) cout << "not found";
+    fclose(stdin);
+    fclose(stdout);
     return 0;
 }

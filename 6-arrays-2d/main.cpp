@@ -1,9 +1,12 @@
 #include <iostream>
 #include <algorithm>
+#include <cstdio>
 
 using namespace std;
 
 int main(){
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
     int n, i, j, summa = 0, pr = 1;
     cin >> n;
     int **a = new int *[n];
@@ -32,5 +35,7 @@ int main(){
         summa = max(summa, max(sum1, sum2));
     }
     cout << "proizvedenie = " << pr << endl << "summa = " << summa;
+    fclose(stdin);
+    fclose(stdout);
     return 0;
 }      

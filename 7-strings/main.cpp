@@ -10,7 +10,9 @@ int main(){
     string s;
     bool flag = false;
     int i;
+    cout << "vvedite tekst:\n";
     getline(cin, s);
+    cout << "slova nachinayushiesya na glasnyu:\n";
     for (i = 0; i < s.size(); i++)
         if (((s[i] == 'a') || (s[i] == 'e') || (s[i] == 'y') || (s[i] == 'u') || (s[i] == 'i') || (s[i] == 'o')) && (i == 0 || (s[i - 1] == ' ' && i > 0))){
             while (s[i] != ' ' && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')))

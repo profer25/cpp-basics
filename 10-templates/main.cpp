@@ -4,6 +4,16 @@
 
 using namespace std;
 
+template <typename T>
+T sum(T a, T b){
+    return a + b;
+}
+
+template <typename T>
+T mx(T a, T b){
+    if (a > b) return a; else return b;
+}
+
 int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -31,10 +41,10 @@ int main(){
         int sum1 = 0, sum2 = 0;
         j = 0;
         while (i < n | j < n){
-            sum1 += a[i][j];
-            sum2 += a[j++][i++];
+            sum1 = sum(sum1, a[i][j]);
+            sum2 = sum(sum2, a[j++][i++]);
         }
-        summa = max(summa, max(sum1, sum2));
+        summa = mx(summa, mx(sum1, sum2));
     }
     cout << "proizvedenie = " << pr << endl << "summa = " << summa;
     fclose(stdin);

@@ -7,13 +7,17 @@ using namespace std;
 int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
+    
     int n, i, j, summa = 0, pr = 1;
+    
     cout << "vvedite razmer massiva:\nn = ";
     cin >> n;
+    
     int **a = new int *[n];
     for (i = 0; i < n; i++)
         a[i] = new int [n];
     bool *b = new bool [n];
+    
     cout << "vvedite massiv n×n:\n";
     for (i = 0; i < n; i++){
         int x = 1;
@@ -23,6 +27,7 @@ int main(){
         }
         if (x) b[i] = true; else b[i] = false;
     }
+    
     for (i = 0; i < n; i++)
         if (b[i])
             for (j = 0; j < n; j++)
@@ -36,7 +41,9 @@ int main(){
         }
         summa = max(summa, max(sum1, sum2));
     }
+    
     cout << "proizvedenie = " << pr << endl << "summa = " << summa;
+    
     fclose(stdin);
     fclose(stdout);
     return 0;

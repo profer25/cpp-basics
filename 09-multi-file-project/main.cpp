@@ -1,53 +1,25 @@
-#include <iostream>
-#include <algorithm>
-#include <cstdio>
-#include "sum.h"
+#include "functions.h"
 
-using namespace std;
+int main() {
+	const int kArraySize = 10;
+	double arr[kArraySize] = { 0, -0.1, 2, -3, 0.4, 5, 0.6, -7, 0.8, -9 };
 
-int main(){
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-    
-    int n, i, j, summa = 0, pr = 1;
-    
-    cout << "vvedite razmer massiva:\nn = ";
-    cin >> n;
-    
-    int **a = new int *[n];
-    for (i = 0; i < n; i++)
-        a[i] = new int [n];
-    bool *b = new bool [n];
-    
-    cout << "vvedite massiv n×n:\n";
-    for (i = 0; i < n; i++){
-        int x = 1;
-        for (j = 0; j < n; j++){
-            cin >> a[i][j];
-            if (a[i][j] < 0) x = 0;
-        }
-        if (x) b[i] = true; else b[i] = false;
-    }
-    
-    for (i = 0; i < n; i++)
-        if (b[i])
-            for (j = 0; j < n; j++)
-                pr *= a[i][j];
-                
-    for (i = 0; i < n; i++){
-        int sum1 = 0, sum2 = 0;
-        j = 0;
-        while (i < n | j < n){
-            sum1 = sum(sum1, a[i][j]);
-            sum2 = sum(sum2, a[j++][i++]);
-        }
-        summa = max(summa, max(sum1, sum2));
-    }
-    
-    cout << "proizvedenie = " << pr << endl << "summa = " << summa << 
-endl;
+	cout << "Initial array: \n";
+	PrintArray(arr, kArraySize);
 
-    fclose(stdin);
-    fclose(stdout);
-    return 0;
-}      
+	cout << "\nThe sum of the elements of the array at odd positions: ";
+	cout << GetOddElemSum(arr, kArraySize) << endl;
+
+	Negatives negatives = FindNegatives(arr, kArraySize);
+	if ((negatives.first > -1) && (negatives.first < negatives.last))
+		cout << "\nSum = " << GetSumBtFirstLastNegatives(arr, negatives) << endl;
+	else
+		cout << "\nNo two negative elements were found.\n";
+
+	cout << "\nSorted array: \n";
+	double sorted_array[kArraySize];
+	SortArray(arr, sorted_array, kArraySize);
+	PrintArray(sorted_array, kArraySize);
+
+	return 0;
+}

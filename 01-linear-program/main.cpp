@@ -3,12 +3,15 @@
 
 using namespace std;
 
-int main(){
-	double a, z1, z2;
-	cout << "vvedi a" << endl << "a = ";
+int main() {
+	double a;
+	cout << "vvedi a\na = ";
 	cin >> a;
-	z1 = (sin(2 * a) + sin(5 * a) - sin(3 * a)) / (cos(a) - cos(3 * a) + cos(5 * a));
-	z2 = tan(3 * a);
-	cout << "z1 = " << z1 << endl << "z2 = " << z2;
+
+	double z1 = (sin(2 * a) + sin(5 * a) - sin(3 * a)) /
+		(cos(a) - cos(3 * a) + cos(5 * a));
+	double z2 = tan(3 * a);
+	cout << "z1 = " << z1 << "\nz2 = " << z2;
+
 	return 0;
 }

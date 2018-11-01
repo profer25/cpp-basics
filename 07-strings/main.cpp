@@ -1,32 +1,37 @@
 #include <iostream>
 #include <string>
-#include <cstdio>
+#include <fstream>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
-int main(){
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    
-    string s;
-    bool flag = false;
-    int i;
-    
-    cout << "vvedite tekst:\n";
-    getline(cin, s);
-    
-    cout << "slova nachinayushiesya na glasnyu:\n";
-    for (i = 0; i < s.size(); i++)
-        if (((s[i] == 'a') || (s[i] == 'e') || (s[i] == 'y') || (s[i] == 'u') || (s[i] == 'i') || (s[i] == 'o')) && (i == 0 || (s[i - 1] == ' ' && i > 0))){
-            while (s[i] != ' ' && ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')))
-                cout << s[i++];
-        cout << endl;
-        flag = true;
-    }
-    
-    if (!flag) cout << "not found";
-    
-    fclose(stdin);
-    fclose(stdout);
-    return 0;
+int main() {
+	ifstream fin("input.txt");
+	if (!fin.is_open()) {
+		cout << "Can't open file: input.txt!\n";
+		return 1;
+	}
+
+	string line;
+	bool words_exist = false;
+	cout << "Words that start with vowel sounds:\n";
+	char vowels[12] = { 'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u' };
+	while (getline(fin, line)) {
+		for (unsigned i = 0; i < line.length(); i++)
+			if (find(vowels, vowels + 12, line[i]) != (vowels + 12))
+				if (i == 0 || (i > 0 && line[i - 1] == ' ')) {
+					while (isalpha(line[i]) && line[i] != ' ')
+						cout << line[i++];
+					cout << endl;
+					words_exist = true;
+				}
+	}
+	fin >> line;
+
+	if (!words_exist) cout << "not found";
+
+	fin.close();
+
+	return 0;
 }
